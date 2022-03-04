@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {View, Button, Platform, StyleSheet, Text} from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import React, {useState} from 'react'; //Importando o React e o useState
+import {View, Button, Platform, StyleSheet, Text} from 'react-native'; //Importando vários componentes do react-native
+import DateTimePicker from '@react-native-community/datetimepicker'; //Importando DateTimePicker que é responsável por capturar a data e hora
 
 export default function App() {
 
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
+  const [date, setDate] = useState(new Date()); //Criando variável de estado que recebe um objeto do tipo data que pega a data e hora atual
+  const [mode, setMode] = useState('date'); //Criando variável de estado que recebe um valor 'date' como padrão
+  const [show, setShow] = useState(false); //Criando variável de estado que determina se mostra ou não o calendário ou relógio pro usuário escolher
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
+  const onChange = (event, selectedDate) => { //Função que serve para atribuir nas váriaveis criadas a data e hora e se mostra ou esconde o calendário e o relógio
+    const currentDate = selectedDate || date; //Criando constante que recebe: ou a data e hora selecionadas, ou a data e hora atual atual
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
   };
