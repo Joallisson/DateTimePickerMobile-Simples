@@ -9,22 +9,23 @@ export default function App() {
   const [show, setShow] = useState(false); //Criando variável de estado que determina se mostra ou não o calendário ou relógio pro usuário escolher
 
   const onChange = (event, selectedDate) => { //Função que serve para atribuir nas váriaveis criadas a data e hora e se mostra ou esconde o calendário e o relógio
-    const currentDate = selectedDate || date; //Criando constante que recebe: ou a data e hora selecionadas, ou a data e hora atual atual
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
+    const currentDate = selectedDate || date; //Criando constante que recebe: ou a data e hora selecionadas pelo usuário, ou a data e hora atual
+    setShow(false); //Quando o usuario escolher a data ou hora, então o componente que seleciona a data e hora não será mais exibido
+    setDate(currentDate); //Atribuindo a constante "currentDate" a variável de estado "date" para determinar a data e hora
+    //setShow(Platform.OS === 'ios'); //Verificando qual a plataforma do que o app está rodando
   };
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
+  const showMode = (currentMode) => { //Esta função é chamada pelos metódos que "showDatepicker" e "showTimepicker" e determina se o que vai ser mostrado ao usuário é o calendário ou o relógio pro usuário escolher
+    setShow(true); //Mostra o calendário ou o relógio
+    setMode(currentMode); //Atribui o modo (calendário ou relógio) que o usuário escolheu para a variável de estado "mode"
   };
 
-  const showDatepicker = () => {
-    showMode('date');
+  const showDatepicker = () => { //Mostra o calendário
+    showMode('date'); //Determina o modo calenário para ser exibido ao usuário
   };
 
-  const showTimepicker = () => {
-    showMode('time');
+  const showTimepicker = () => { //Mostra o relógio
+    showMode('time'); //Determina o modo relógio para ser exibido ao usuário
   };
 
   return (
@@ -35,8 +36,10 @@ export default function App() {
       <View>
         <Button onPress={showTimepicker} title="Show time picker!" />
       </View>
+      
       {show && (
-        <DateTimePicker
+        <DateTimePicker //Componente que mostra a data e hora para o usuário
+          //PARÂMETROS DE CONFIGURAÇÃO DO COMPONENTE
           testID="dateTimePicker"
           value={date}
           mode={mode}
